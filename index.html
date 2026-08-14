@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>训练记录 · V1</title>
+  <title>训练记录 · V1.3</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -33,7 +33,7 @@
 
         <div class="grid-2">
           <div class="stat-card"><div class="muted">最近一次力量</div><div id="lastStrength" class="stat-big">—</div></div>
-          <div class="stat-card"><div class="muted">本周力量</div><div id="weekStrength" class="stat-big">0 次</div></div>
+          <div class="stat-card"><div class="muted">本周训练</div><div id="weekStrength" class="stat-big">0 次</div></div>
         </div>
 
         <section class="section">
@@ -47,7 +47,62 @@
           <div id="recoveryAdvice" class="advice-box">记录酸痛后，我会据此调整当天建议。</div>
         </section>
 
-        <section class="section"><h2>三个训练模板</h2><div id="planCards" class="stack"></div></section>
+        <section class="section">
+          <div class="section-title-row"><h2>训练模板</h2><button class="ghost small" data-go-templates>管理模板</button></div>
+          <div id="planCards" class="stack"></div>
+        </section>
+      </section>
+
+      <section id="view-templates" class="view">
+        <div class="section-title-row template-header">
+          <div><div class="muted">TRAINING TEMPLATES</div><h2>训练模板</h2></div>
+          <button id="newTemplateBtn" class="primary compact">＋ 新建</button>
+        </div>
+
+        <div class="panel">
+          <h3>内置模板</h3>
+          <div id="builtInTemplates" class="stack compact-stack"></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-title-row"><h3>我的模板</h3><span id="customTemplateCount" class="muted">0 个</span></div>
+          <div id="customTemplates" class="stack compact-stack"></div>
+        </div>
+
+        <div id="templateEditor" class="panel hidden">
+          <div class="section-title-row">
+            <div><div class="muted">自定义</div><h3 id="editorTitle">新建模板</h3></div>
+            <button id="cancelTemplateBtn" class="ghost small">取消</button>
+          </div>
+
+          <div class="template-name-row">
+            <label>模板名称
+              <select id="templateNamePreset">
+                <option value="auto">自动命名</option>
+                <option value="上肢训练">上肢训练</option>
+                <option value="下肢训练">下肢训练</option>
+                <option value="全身训练">全身训练</option>
+                <option value="体态训练">体态训练</option>
+                <option value="有氧训练">有氧训练</option>
+                <option value="力量 + 有氧">力量 + 有氧</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="exercise-picker">
+            <label>动作类别
+              <select id="exerciseCategory"></select>
+            </label>
+            <label>选择动作
+              <select id="exerciseSelect"></select>
+            </label>
+            <button id="addExerciseBtn" class="primary">＋ 添加动作</button>
+          </div>
+
+          <div class="picker-hint muted">绝大多数动作都可以直接从下拉菜单选择，不需要打字。</div>
+          <div id="templateExerciseList" class="stack template-ex-list"></div>
+          <button id="saveTemplateBtn" class="primary full">保存模板</button>
+        </div>
       </section>
 
       <section id="view-session" class="view">
@@ -71,20 +126,21 @@
       <section id="view-settings" class="view">
         <h2>设置</h2>
         <div class="panel">
-          <label>默认加重量步长（kg）<input id="defaultIncrement" type="number" min="0.5" step="0.5" value="2.5" /></label>
+          <label>力量动作默认加重量步长（kg）<input id="defaultIncrement" type="number" min="0.5" step="0.5" value="2.5" /></label>
           <button id="saveSettingsBtn" class="primary">保存设置</button>
         </div>
         <div class="panel">
-          <h3>数据备份</h3><p class="muted">数据只保存在当前浏览器。可导出 JSON 备份，并在其他设备导入。</p>
+          <h3>数据备份</h3><p class="muted">训练记录和自定义模板都保存在当前浏览器。可导出 JSON 备份，并在其他设备导入。</p>
           <input id="importFile" type="file" accept="application/json" />
           <button id="clearDataBtn" class="danger">清空全部数据</button>
         </div>
-        <div class="panel"><h3>关于 V1</h3><p class="muted">预装：上肢 A、腿 + 核心、上肢 B。记录重量 / 次数 / 最后一组 RIR，并生成可直接发给 ChatGPT 的训练报告。</p></div>
+        <div class="panel"><h3>关于 V1.3</h3><p class="muted">支持自定义训练模板、常见力量动作和有氧项目。力量动作记录重量 / 次数 / RIR；有氧记录时间、距离和主观强度。</p></div>
       </section>
     </main>
 
     <nav class="bottom-nav">
       <button data-view="home" class="nav-btn active"><span>⌂</span>今天</button>
+      <button data-view="templates" class="nav-btn"><span>▦</span>模板</button>
       <button data-view="history" class="nav-btn"><span>↻</span>历史</button>
       <button data-view="settings" class="nav-btn"><span>⚙</span>设置</button>
     </nav>
