@@ -1,0 +1,15 @@
+.favorite-btn{min-height:44px;white-space:nowrap}
+.favorite-btn.favorite-active{background:var(--warnBg);color:var(--warn);border-color:color-mix(in srgb,var(--warn) 35%,var(--line))}
+.session-add-panel{margin:0 0 12px}
+.session-add-toggle{width:100%;min-height:46px;border-style:dashed}
+.temp-picker{margin-top:10px;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+.picker-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.temp-exercise-picker{margin-bottom:0}
+.temporary-tag{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;background:var(--warnBg);color:var(--warn);font-size:11px;font-weight:800;margin-left:auto}
+.exercise-title-row .temporary-tag + .exercise-status{margin-left:4px}
+.remove-temp-exercise{flex:.65!important}
+@media(max-width:520px){
+  .exercise-picker.temp-exercise-picker{grid-template-columns:1fr 1fr}
+  .exercise-picker.temp-exercise-picker .favorite-btn,
+  .exercise-picker.temp-exercise-picker .primary{width:100%}
+}
