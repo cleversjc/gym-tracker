@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111827" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>训练记录 · V1</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div><div class="eyebrow">TRAINING LOG</div><h1>训练记录</h1></div>
+      <button id="themeBtn" class="icon-btn" aria-label="切换主题">◐</button>
+    </header>
+
+    <main>
+      <section id="view-home" class="view active">
+        <div class="hero-card">
+          <div class="hero-row">
+            <div>
+              <div class="muted">下一次建议</div>
+              <div id="nextWorkoutName" class="hero-title">上肢 A</div>
+              <div id="nextWorkoutHint" class="hero-sub">背部 / 体态优先</div>
+            </div>
+            <div id="recoveryBadge" class="badge good">可训练</div>
+          </div>
+          <button id="startSuggestedBtn" class="primary">开始这次训练</button>
+        </div>
+
+        <div class="grid-2">
+          <div class="stat-card"><div class="muted">最近一次力量</div><div id="lastStrength" class="stat-big">—</div></div>
+          <div class="stat-card"><div class="muted">本周力量</div><div id="weekStrength" class="stat-big">0 次</div></div>
+        </div>
+
+        <section class="section">
+          <div class="section-title-row"><h2>快速恢复检查</h2><button id="saveRecoveryBtn" class="ghost small">保存</button></div>
+          <div class="recovery-grid">
+            <label>背部 <span id="backVal">0</span>/10<input id="backSoreness" type="range" min="0" max="10" value="0" /></label>
+            <label>胸部 <span id="chestVal">0</span>/10<input id="chestSoreness" type="range" min="0" max="10" value="0" /></label>
+            <label>手臂 <span id="armsVal">0</span>/10<input id="armsSoreness" type="range" min="0" max="10" value="0" /></label>
+            <label>腿部 <span id="legsVal">0</span>/10<input id="legsSoreness" type="range" min="0" max="10" value="0" /></label>
+          </div>
+          <div id="recoveryAdvice" class="advice-box">记录酸痛后，我会据此调整当天建议。</div>
+        </section>
+
+        <section class="section"><h2>三个训练模板</h2><div id="planCards" class="stack"></div></section>
+      </section>
+
+      <section id="view-session" class="view">
+        <div class="session-head">
+          <button id="backHomeBtn" class="ghost">← 返回</button>
+          <div><div class="muted">当前训练</div><h2 id="sessionTitle">上肢 A</h2></div>
+          <button id="finishSessionBtn" class="primary compact">完成</button>
+        </div>
+        <div class="session-meta">
+          <label>体重 kg<input id="bodyWeight" inputmode="decimal" placeholder="可选" /></label>
+          <label>精神状态<select id="energy"><option value="3">一般</option><option value="4">不错</option><option value="5">很好</option><option value="2">偏差</option><option value="1">很差</option></select></label>
+        </div>
+        <div id="exerciseList" class="stack"></div>
+      </section>
+
+      <section id="view-history" class="view">
+        <div class="section-title-row"><h2>训练历史</h2><div class="row"><button id="exportJsonBtn" class="ghost small">导出 JSON</button><button id="exportCsvBtn" class="ghost small">导出 CSV</button></div></div>
+        <div id="historyList" class="stack"></div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <h2>设置</h2>
+        <div class="panel">
+          <label>默认加重量步长（kg）<input id="defaultIncrement" type="number" min="0.5" step="0.5" value="2.5" /></label>
+          <button id="saveSettingsBtn" class="primary">保存设置</button>
+        </div>
+        <div class="panel">
+          <h3>数据备份</h3><p class="muted">数据只保存在当前浏览器。可导出 JSON 备份，并在其他设备导入。</p>
+          <input id="importFile" type="file" accept="application/json" />
+          <button id="clearDataBtn" class="danger">清空全部数据</button>
+        </div>
+        <div class="panel"><h3>关于 V1</h3><p class="muted">预装：上肢 A、腿 + 核心、上肢 B。记录重量 / 次数 / 最后一组 RIR，并生成可直接发给 ChatGPT 的训练报告。</p></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button data-view="home" class="nav-btn active"><span>⌂</span>今天</button>
+      <button data-view="history" class="nav-btn"><span>↻</span>历史</button>
+      <button data-view="settings" class="nav-btn"><span>⚙</span>设置</button>
+    </nav>
+
+    <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modal-card">
+        <div class="section-title-row"><h2>训练完成</h2><button id="closeModalBtn" class="icon-btn">✕</button></div>
+        <textarea id="reportText" rows="16" readonly></textarea>
+        <div class="row"><button id="copyReportBtn" class="primary grow">复制训练报告</button><button id="shareReportBtn" class="ghost">分享</button></div>
+      </div>
+    </div>
+    <div id="toast" class="toast hidden"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
