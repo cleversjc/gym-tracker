@@ -6,11 +6,12 @@
   <meta name="theme-color" content="#111827" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>训练记录 · V1.6</title>
+  <title>训练记录 · V1.7</title>
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="enhancements.css" />
   <link rel="stylesheet" href="ui-v16.css" />
+  <link rel="stylesheet" href="custom-exercises.css" />
 </head>
 <body>
   <div id="app">
@@ -132,11 +133,11 @@
           <button id="saveSettingsBtn" class="primary">保存设置</button>
         </div>
         <div class="panel">
-          <h3>数据备份</h3><p class="muted">训练记录、自定义模板和收藏动作都保存在当前浏览器。可导出 JSON 备份，并在其他设备导入。</p>
+          <h3>数据备份</h3><p class="muted">训练记录、自定义模板、收藏动作和自定义训练项目都保存在当前浏览器。可导出 JSON 备份，并在其他设备导入。</p>
           <input id="importFile" type="file" accept="application/json" />
           <button id="clearDataBtn" class="danger">清空全部数据</button>
         </div>
-        <div class="panel"><h3>关于 V1.6</h3><p class="muted">支持更方便的模板查看与编辑，以及未完成训练自动保存与恢复。</p></div>
+        <div class="panel"><h3>关于 V1.7</h3><p class="muted">支持自定义训练项目：创建后可用于模板、收藏和训练中的临时加动作；未完成训练仍会自动保存。</p></div>
       </section>
     </main>
 
@@ -160,5 +161,6 @@
   <script src="enhancements.js"></script>
   <script src="rest-timer.js"></script>
   <script src="ui-v16.js"></script>
+  <script src="custom-exercises.js"></script>
 </body>
 </html>
